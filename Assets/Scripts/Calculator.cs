@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class Calculator : MonoBehaviour
 {
-    public Text numbersLabel;
-    public Text operatorLabel;
+   [SerializeField] private Text numbersLabel;
+   [SerializeField] private Text operatorLabel;
     private float result;
     private float input;
     private string operation;
@@ -21,15 +21,6 @@ public class Calculator : MonoBehaviour
             input = result;
             numbersLabel.text += $"{val}";
         }
-
-        /*  if (input == 0)
-          {
-              input = val;
-          }
-          else
-          {
-              secondInput = val;
-          } */
     }
 
     public void OperationClick(string val)
@@ -78,7 +69,11 @@ public class Calculator : MonoBehaviour
 
     public void PeriodClick(string val)
     {
-        numbersLabel.text += $"{val}";
+        if(numbersLabel.text.Contains(",") == false){
+            numbersLabel.text += $"{val}";
+        }else{
+            Debug.Log("The comma is already there");
+        }
     }
 
     public void ClearAll()
